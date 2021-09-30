@@ -4,7 +4,6 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/app"
 	"github.com/Wintec-Yuda/print-certificate.git/controller"
 	"github.com/Wintec-Yuda/print-certificate.git/helper"
-	"github.com/Wintec-Yuda/print-certificate.git/middleware"
 	"github.com/Wintec-Yuda/print-certificate.git/repository"
 	"github.com/Wintec-Yuda/print-certificate.git/service"
 	"net/http"
@@ -22,11 +21,11 @@ func main() {
 	categoryController := controller.NewSertifikatController(categoryService)
 	router := app.NewRouter(categoryController)
 
-	server := http.Server{
-		Addr:    "localhost:3000",
-		Handler: middleware.NewAuthMiddleware(router),
-	}
+	//server := http.Server{
+	//	Addr:    "localhost:3000",
+	//	Handler: middleware.NewAuthMiddleware(router),
+	//}
 
-	err := server.ListenAndServe()
+	err := http.ListenAndServe(":1000", router)
 	helper.PanicIfError(err)
 }
