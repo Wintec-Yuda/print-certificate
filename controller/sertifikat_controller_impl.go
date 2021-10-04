@@ -94,8 +94,7 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	//helper.WriteToResponseBody(writer, webResponse)
 
 	data := controller.SertifikatService.FindAll(request.Context())
-	var nama = data[0].Nama
-
+	var names = data[0]
 
 	var tmpl, err = template.ParseGlob("template/*")
 	if err != nil {
@@ -103,7 +102,7 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 		return
 	}
 
-	err = tmpl.ExecuteTemplate(writer, "index", nama)
+	err = tmpl.ExecuteTemplate(writer, "index", names)
 	if err != nil {
 		println(err.Error())
 	}
