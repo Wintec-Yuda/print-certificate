@@ -16,11 +16,7 @@ import (
 var rnd *renderer.Render
 
 func init() {
-	opts := renderer.Options{
-		ParseGlobPattern: "./tpl/*.html",
-	}
-
-	rnd = renderer.New(opts)
+	rnd = renderer.New()
 }
 
 func main() {
