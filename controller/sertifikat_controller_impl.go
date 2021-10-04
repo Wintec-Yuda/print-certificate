@@ -6,6 +6,7 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/service"
 	"github.com/julienschmidt/httprouter"
 	"github.com/thedevsaddam/renderer"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -13,6 +14,8 @@ import (
 type SertifikatControllerImpl struct {
 	SertifikatService service.SertifikatService
 }
+
+var rnd *renderer.Render
 
 func NewSertifikatController(SertifikatService service.SertifikatService) SertifikatController {
 	return &SertifikatControllerImpl{
@@ -93,6 +96,9 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 
 	helper.WriteToResponseBody(writer, webResponse)
 
-	rnd := renderer.New()
-	rnd.HTML(writer, http.StatusOK, "template/find_all", sertifikatResponses)
+	err := rnd.HTML(writer, http.StatusOK, "template/find_all.html", sertifikatResponses)
+	if err != nil {
+		log.Fatal(err) //respond with error page or message
+	}
 }
+
