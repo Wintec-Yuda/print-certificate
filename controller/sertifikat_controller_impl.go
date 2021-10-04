@@ -1,12 +1,14 @@
 package controller
 
 import (
-	"github.com/julienschmidt/httprouter"
-	"net/http"
 	"github.com/Wintec-Yuda/print-certificate.git/helper"
 	"github.com/Wintec-Yuda/print-certificate.git/model/web"
 	"github.com/Wintec-Yuda/print-certificate.git/service"
+	"github.com/julienschmidt/httprouter"
+	"net/http"
 	"strconv"
+
+	"html/template"
 )
 
 type SertifikatControllerImpl struct {
@@ -91,4 +93,6 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	}
 
 	helper.WriteToResponseBody(writer, webResponse)
+	var tpl *template.Template
+	tpl.ExecuteTemplate(writer, "template/find_all.html", sertifikatResponses)
 }
