@@ -7,8 +7,9 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"github.com/thedevsaddam/renderer"
 	"net/http"
+	"path"
 	"strconv"
-	"log"
+	"html/template"
 )
 
 type SertifikatControllerImpl struct {
@@ -96,9 +97,21 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 
 	helper.WriteToResponseBody(writer, webResponse)
 
-	err := rnd.HTML(writer, http.StatusOK, "template/find_all.html", sertifikatResponses)
+	//err := rnd.HTML(writer, http.StatusOK, "template/index.html", sertifikatResponses)
+	//if err != nil {
+	//	log.Fatal(err) //respond with error page or message
+	//}
+
+	var filepath = path.Join("template", "index.html")
+	var tmpl, err = template.ParseFiles(filepath)
 	if err != nil {
-		log.Fatal(err) //respond with error page or message
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = tmpl.Execute(writer, sertifikatResponses)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
 
 }

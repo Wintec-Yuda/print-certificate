@@ -13,12 +13,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var rnd *renderer.Render
-
-func init() {
-	rnd = renderer.New()
-}
-
 func main() {
 
 	db := app.NewDB()
