@@ -5,7 +5,6 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/model/web"
 	"github.com/Wintec-Yuda/print-certificate.git/service"
 	"github.com/julienschmidt/httprouter"
-	"html/template"
 	"net/http"
 	"strconv"
 )
@@ -86,28 +85,28 @@ func (controller *SertifikatControllerImpl) FindById(writer http.ResponseWriter,
 }
 
 func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
-	//sertifikatResponses := controller.SertifikatService.FindAll(request.Context())
-	//webResponse := web.WebResponse{
-	//	Code:   200,
-	//	Status: "OK",
-	//	Data:   sertifikatResponses,
+	sertifikatResponses := controller.SertifikatService.FindAll(request.Context())
+	webResponse := web.WebResponse{
+		Code:   200,
+		Status: "OK",
+		Data:   sertifikatResponses,
+	}
+
+	helper.WriteToResponseBody(writer, webResponse)
+
+	//data := controller.SertifikatService.FindAll(request.Context())
+	//
+	//
+	//var tmpl, err = template.ParseGlob("template/*")
+	//if err != nil {
+	//	panic(err.Error())
+	//	return
 	//}
 	//
-	//helper.WriteToResponseBody(writer, webResponse)
-
-	data := controller.SertifikatService.FindAll(request.Context())
-
-	//var data = M{"name": "Batman"}
-	var tmpl, err = template.ParseGlob("template/*")
-	if err != nil {
-		panic(err.Error())
-		return
-	}
-
-	err = tmpl.ExecuteTemplate(writer, "index", data)
-	if err != nil {
-		http.Error(writer, err.Error(), http.StatusInternalServerError)
-	}
+	//err = tmpl.ExecuteTemplate(writer, "index", data)
+	//if err != nil {
+	//	http.Error(writer, err.Error(), http.StatusInternalServerError)
+	//}
 
 	//var filepath = path.Join("template", "index.html")
 	//var tmpl, err = template.ParseFiles(filepath)
