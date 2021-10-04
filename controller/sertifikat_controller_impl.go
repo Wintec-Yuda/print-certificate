@@ -96,7 +96,7 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 
 	helper.WriteToResponseBody(writer, webResponse)
 
-	err := rnd.HTML(writer, http.StatusOK, "template/find_all.html", sertifikatResponses)
+	err := rnd.HTML(writer, http.StatusOK, "../template/find_all.html", sertifikatResponses)
 	if err != nil {
 		log.Fatal(err) //respond with error page or message
 	}
