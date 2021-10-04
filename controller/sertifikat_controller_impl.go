@@ -10,6 +10,8 @@ import (
 	"strconv"
 )
 
+type M map[string]interface{}
+
 type SertifikatControllerImpl struct {
 	SertifikatService service.SertifikatService
 }
@@ -93,15 +95,16 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	//
 	//helper.WriteToResponseBody(writer, webResponse)
 
-	data := controller.SertifikatService.FindAll(request.Context())
+	//data := controller.SertifikatService.FindAll(request.Context())
 
+	var data = M{"name": "Batman"}
 	var tmpl, err = template.ParseGlob("template/*")
 	if err != nil {
 		panic(err.Error())
 		return
 	}
 
-	err = tmpl.ExecuteTemplate(writer, "index.html", data)
+	err = tmpl.ExecuteTemplate(writer, "index", data)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
