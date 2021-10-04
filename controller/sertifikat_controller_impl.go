@@ -7,7 +7,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"html/template"
 	"net/http"
-	"path"
 	"strconv"
 )
 
@@ -96,17 +95,28 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 
 	data := controller.SertifikatService.FindAll(request.Context())
 
-	var filepath = path.Join("template", "index.html")
-	var tmpl, err = template.ParseFiles(filepath)
+	var tmpl, err = template.ParseGlob("template/*")
 	if err != nil {
-		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		panic(err.Error())
 		return
 	}
 
-	err = tmpl.Execute(writer, data)
+	err = tmpl.ExecuteTemplate(writer, "index", data)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
+
+	//var filepath = path.Join("template", "index.html")
+	//var tmpl, err = template.ParseFiles(filepath)
+	//if err != nil {
+	//	http.Error(writer, err.Error(), http.StatusInternalServerError)
+	//	return
+	//}
+	//
+	//err = tmpl.Execute(writer, data)
+	//if err != nil {
+	//	http.Error(writer, err.Error(), http.StatusInternalServerError)
+	//}
 
 }
 
