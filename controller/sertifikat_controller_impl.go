@@ -95,9 +95,9 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	//
 	//helper.WriteToResponseBody(writer, webResponse)
 
-	//data := controller.SertifikatService.FindAll(request.Context())
+	data := controller.SertifikatService.FindAll(request.Context())
 
-	var data = M{"name": "Batman"}
+	//var data = M{"name": "Batman"}
 	var tmpl, err = template.ParseGlob("template/*")
 	if err != nil {
 		panic(err.Error())
