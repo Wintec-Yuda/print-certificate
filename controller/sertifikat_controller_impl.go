@@ -6,9 +6,9 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/service"
 	"github.com/julienschmidt/httprouter"
 	"github.com/thedevsaddam/renderer"
-	"log"
 	"net/http"
 	"strconv"
+	"log"
 )
 
 type SertifikatControllerImpl struct {
@@ -100,5 +100,6 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	if err != nil {
 		log.Fatal(err) //respond with error page or message
 	}
+
 }
 
