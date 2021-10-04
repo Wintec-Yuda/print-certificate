@@ -94,8 +94,8 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	//
 	//helper.WriteToResponseBody(writer, webResponse)
 
-	//data := controller.SertifikatService.FindAll(request.Context())
-	//var names = data[0]
+	data := controller.SertifikatService.FindAll(request.Context())
+	var names = data[0]
 
 	var filepath = path.Join("template", "index.html")
 	var tmpl, err = template.ParseFiles(filepath)
@@ -104,12 +104,12 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 		return
 	}
 
-	var data = map[string]interface{}{
-		"title": "Learning Golang Web",
-		"name":  "Batman",
-	}
+	//var data = map[string]interface{}{
+	//	"title": "Learning Golang Web",
+	//	"name":  "Batman",
+	//}
 
-	err = tmpl.Execute(writer, data)
+	err = tmpl.Execute(writer, names)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
