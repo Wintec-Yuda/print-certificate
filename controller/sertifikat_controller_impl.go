@@ -5,7 +5,6 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/model/web"
 	"github.com/Wintec-Yuda/print-certificate.git/service"
 	"github.com/julienschmidt/httprouter"
-	"github.com/thedevsaddam/renderer"
 	"html/template"
 	"net/http"
 	"path"
@@ -15,8 +14,6 @@ import (
 type SertifikatControllerImpl struct {
 	SertifikatService service.SertifikatService
 }
-
-var rnd *renderer.Render
 
 func NewSertifikatController(SertifikatService service.SertifikatService) SertifikatController {
 	return &SertifikatControllerImpl{
