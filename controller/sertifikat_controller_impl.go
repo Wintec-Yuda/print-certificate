@@ -94,8 +94,9 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	//
 	//helper.WriteToResponseBody(writer, webResponse)
 
-	data := controller.SertifikatService.FindAll(request.Context())
+	//data := controller.SertifikatService.FindAll(request.Context())
 
+	data := "Welcome to my website"
 	var filepath = path.Join("template", "index.html")
 	var tmpl, err = template.ParseFiles(filepath)
 	if err != nil {
