@@ -94,6 +94,8 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	//
 	//helper.WriteToResponseBody(writer, webResponse)
 
+	data := controller.SertifikatService.FindAll(request.Context())
+
 	var filepath = path.Join("template", "index.html")
 	var tmpl, err = template.ParseFiles(filepath)
 	if err != nil {
@@ -101,7 +103,7 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 		return
 	}
 
-	err = tmpl.Execute(writer, nil)
+	err = tmpl.Execute(writer, data)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
