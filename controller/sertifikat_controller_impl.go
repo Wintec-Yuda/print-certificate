@@ -101,7 +101,7 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 		return
 	}
 
-	err = tmpl.ExecuteTemplate(writer, "index", data)
+	err = tmpl.ExecuteTemplate(writer, "index.html", data)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
 	}
