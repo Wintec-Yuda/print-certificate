@@ -86,13 +86,13 @@ func (controller *SertifikatControllerImpl) FindById(writer http.ResponseWriter,
 
 func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	sertifikatResponses := controller.SertifikatService.FindAll(request.Context())
-	webResponse := web.WebResponse{
-		Code:   200,
-		Status: "OK",
-		Data:   sertifikatResponses,
-	}
-
-	helper.WriteToResponseBody(writer, webResponse)
+	//webResponse := web.WebResponse{
+	//	Code:   200,
+	//	Status: "OK",
+	//	Data:   sertifikatResponses,
+	//}
+	//
+	//helper.WriteToResponseBody(writer, webResponse)
 
 	//err := rnd.HTML(writer, http.StatusOK, "template/index.html", sertifikatResponses)
 	//if err != nil {
