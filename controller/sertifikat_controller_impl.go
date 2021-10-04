@@ -6,10 +6,10 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/service"
 	"github.com/julienschmidt/httprouter"
 	"github.com/thedevsaddam/renderer"
+	"html/template"
 	"net/http"
 	"path"
 	"strconv"
-	"html/template"
 )
 
 type SertifikatControllerImpl struct {

@@ -6,7 +6,6 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/helper"
 	"github.com/Wintec-Yuda/print-certificate.git/repository"
 	"github.com/Wintec-Yuda/print-certificate.git/service"
-	"github.com/thedevsaddam/renderer"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
