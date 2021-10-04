@@ -94,5 +94,5 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 
 	helper.WriteToResponseBody(writer, webResponse)
 	var tpl *template.Template
-	tpl.ExecuteTemplate(writer, "template/find_all.html", sertifikatResponses)
+	helper.Render(writer, request, tpl, "template/find_all.html", sertifikatResponses)
 }
