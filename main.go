@@ -6,11 +6,22 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/helper"
 	"github.com/Wintec-Yuda/print-certificate.git/repository"
 	"github.com/Wintec-Yuda/print-certificate.git/service"
+	"github.com/thedevsaddam/renderer"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
 	_ "github.com/go-sql-driver/mysql"
 )
+
+var rnd *renderer.Render
+
+func init() {
+	opts := renderer.Options{
+		ParseGlobPattern: "./tpl/*.html",
+	}
+
+	rnd = renderer.New(opts)
+}
 
 func main() {
 

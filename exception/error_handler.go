@@ -59,7 +59,7 @@ func notFoundError(writer http.ResponseWriter, request *http.Request, err interf
 }
 
 func internalServerError(writer http.ResponseWriter, request *http.Request, err interface{}) {
-	writer.Header().Set("Content-Type", "text/html")
+	writer.Header().Set("Content-Type", "application/json")
 	writer.WriteHeader(http.StatusInternalServerError)
 
 	webResponse := web.WebResponse{
