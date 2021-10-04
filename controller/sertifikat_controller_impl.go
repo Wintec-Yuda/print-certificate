@@ -97,7 +97,7 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 	//data := controller.SertifikatService.FindAll(request.Context())
 	//var names = data[0]
 
-	var filepath = path.Join("views", "index.html")
+	var filepath = path.Join("template", "index.html")
 	var tmpl, err = template.ParseFiles(filepath)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusInternalServerError)
