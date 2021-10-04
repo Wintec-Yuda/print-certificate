@@ -1,10 +1,10 @@
 package exception
 
 import (
-	"github.com/go-playground/validator/v10"
-	"net/http"
 	"github.com/Wintec-Yuda/print-certificate.git/helper"
 	"github.com/Wintec-Yuda/print-certificate.git/model/web"
+	"github.com/go-playground/validator/v10"
+	"net/http"
 )
 
 func ErrorHandler(writer http.ResponseWriter, request *http.Request, err interface{}) {
@@ -59,7 +59,7 @@ func notFoundError(writer http.ResponseWriter, request *http.Request, err interf
 }
 
 func internalServerError(writer http.ResponseWriter, request *http.Request, err interface{}) {
-	writer.Header().Set("Content-Type", "application/json")
+	writer.Header().Set("Content-Type", "text/html")
 	writer.WriteHeader(http.StatusInternalServerError)
 
 	webResponse := web.WebResponse{
