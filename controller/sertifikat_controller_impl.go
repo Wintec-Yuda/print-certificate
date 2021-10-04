@@ -5,9 +5,9 @@ import (
 	"github.com/Wintec-Yuda/print-certificate.git/model/web"
 	"github.com/Wintec-Yuda/print-certificate.git/service"
 	"github.com/julienschmidt/httprouter"
+	"html/template"
 	"net/http"
 	"strconv"
-	"html/template"
 )
 
 type SertifikatControllerImpl struct {
@@ -105,7 +105,7 @@ func (controller *SertifikatControllerImpl) FindAll(writer http.ResponseWriter, 
 
 	err = tmpl.ExecuteTemplate(writer, "index", nama)
 	if err != nil {
-		http.Error(writer, err.Error(), http.StatusInternalServerError)
+		println(err.Error())
 	}
 
 	//var filepath = path.Join("template", "index.html")
